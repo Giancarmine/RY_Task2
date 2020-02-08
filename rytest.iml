@@ -126,5 +126,12 @@
     <orderEntry type="library" name="Maven: org.springframework.plugin:spring-plugin-metadata:1.2.0.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.mapstruct:mapstruct:1.2.0.Final" level="project" />
     <orderEntry type="library" name="Maven: io.springfox:springfox-swagger-ui:2.9.2" level="project" />
+    <orderEntry type="library" name="Maven: io.github.openfeign:feign-okhttp:9.3.1" level="project" />
+    <orderEntry type="library" name="Maven: io.github.openfeign:feign-core:9.3.1" level="project" />
+    <orderEntry type="library" name="Maven: org.jvnet:animal-sniffer-annotation:1.0" level="project" />
+    <orderEntry type="library" name="Maven: com.squareup.okhttp3:okhttp:3.14.6" level="project" />
+    <orderEntry type="library" name="Maven: com.squareup.okio:okio:1.17.2" level="project" />
+    <orderEntry type="library" name="Maven: io.github.openfeign:feign-gson:9.3.1" level="project" />
+    <orderEntry type="library" name="Maven: io.github.openfeign:feign-slf4j:9.3.1" level="project" />
   </component>
 </module>
