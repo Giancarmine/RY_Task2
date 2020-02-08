@@ -7,7 +7,8 @@ import feign.gson.GsonEncoder;
 import feign.okhttp.OkHttpClient;
 import feign.slf4j.Slf4jLogger;
 import org.ges.rytest.client.RoutesClient;
-import org.ges.rytest.model.dao.Routes;
+import org.ges.rytest.model.dao.Route;
+import org.ges.rytest.model.dao.Schedule;
 import org.ges.rytest.model.dto.RoutesDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -30,8 +31,8 @@ public class MainService {
         return Arrays.stream(restTemplate.getForObject(resource, RoutesDTO[].class)).collect(Collectors.toList());
     }
 
-    public List<Routes> findAllRoutesIATA() {
-        RoutesClient bookClient = Feign.builder()
+    public List<Route> findAllRoutesIATA() {
+        RoutesClient routesClient = Feign.builder()
                 .client(new OkHttpClient())
                 .encoder(new GsonEncoder())
                 .decoder(new GsonDecoder())
@@ -39,8 +40,22 @@ public class MainService {
                 .logLevel(Logger.Level.FULL)
                 .target(RoutesClient.class, "https://services-api.ryanair.com/locate/3/routes");
 
-        return bookClient.findAll();
+        return routesClient.findAllRoute();
     }
 
+    public Schedule findAllSchedulesIATA(String departure, String arrival, String year, String month) {
+        RoutesClient routesClient = Feign.builder()
+                .client(new OkHttpClient())
+                .encoder(new GsonEncoder())
+                .decoder(new GsonDecoder())
+                .logger(new Slf4jLogger(RoutesClient.class))
+                .logLevel(Logger.Level.FULL)
+                .target(RoutesClient.class, "https://services-api.ryanair.com/timtbl/3/schedules/"
+                                            + departure
+                                            + "/" + arrival
+                                            +"/years/" + year
+                                            +"/months/" + month );
 
+        return routesClient.findAllSchedule();
+    }
 }

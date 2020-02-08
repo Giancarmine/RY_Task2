@@ -1,7 +1,7 @@
 package org.ges.rytest.model.dao;
 
 
-public class Routes {
+public class Route {
     private String airportFrom;
     private String airportTo;
     private String connectingAirport;
