@@ -2,8 +2,12 @@ package org.ges.rytest.model.dao;
 
 
 public class Routes {
-    private String departureAirport;
-    private String arrivalAirport;
-    private String departureDateTime;
-    private String arrivalDateTime;
+    private String airportFrom;
+    private String airportTo;
+    private String connectingAirport;
+    private String newRoute;
+    private String seasonalRoute;
+    private String operator;
+    private String group;
+    private String carrierCode;
 }
