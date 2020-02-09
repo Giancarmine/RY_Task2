@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -57,5 +58,11 @@ public class MainService {
                                             +"/months/" + month );
 
         return routesClient.findAllSchedule();
+    }
+
+    public String findInterconnections(String departure, String arrival, LocalDateTime departureDateTime, LocalDateTime arrivalDateTime) {
+
+
+        return "OK";
     }
 }
