@@ -1,6 +1,9 @@
 package org.ges.rytest.model.dao;
 
 
+import lombok.Data;
+
+@Data
 public class Route {
     private String airportFrom;
     private String airportTo;

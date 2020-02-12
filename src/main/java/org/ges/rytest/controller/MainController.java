@@ -13,7 +13,9 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.ParseException;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 @Api(value="RY - Test2 API")
 @RestController
@@ -59,8 +61,8 @@ public class MainController {
     @GetMapping(value = "/getAllSchedules/{departure}/{arrival}/years/{year}/months/{month}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity getAll(@PathVariable String departure,
                                  @PathVariable String arrival,
-                                 @PathVariable String year,
-                                 @PathVariable String month) {
+                                 @PathVariable Integer year,
+                                 @PathVariable Integer month) {
         return new ResponseEntity<>(gson.toJson(service.findAllSchedulesIATA(departure,
                 arrival,
                 year,
@@ -77,8 +79,8 @@ public class MainController {
     @GetMapping(value = "/interconnections", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity getAll(@RequestParam String departure,
                                  @RequestParam String arrival,
-                                 @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime  departureDateTime,
-                                 @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime arrivalDateTime) {
+                                 @RequestParam(value="departureDateTime", required=false) @DateTimeFormat(pattern="yyyy-MM-dd'T'HH:mm") final Date departureDateTime,
+                                 @RequestParam(value="arrivalDateTime", required=false) @DateTimeFormat(pattern="yyyy-MM-dd'T'HH:mm") final Date arrivalDateTime) throws ParseException {
         return new ResponseEntity<>(gson.toJson(service.findInterconnections(departure,
                 arrival,
                 departureDateTime,
