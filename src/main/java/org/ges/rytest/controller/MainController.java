@@ -34,7 +34,7 @@ public class MainController {
             @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
             @ApiResponse(code = 404, message = "The resource you were trying to reach is not found")
     })
-    @GetMapping(value = "/status", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity sayHello() {
         return new ResponseEntity<>(gson.toJson("Hello, I'm Alive!"), HttpStatus.OK);
     }
