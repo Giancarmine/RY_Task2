@@ -81,9 +81,6 @@ public class MainController {
                                  @RequestParam String arrival,
                                  @RequestParam(value="departureDateTime", required=false) @DateTimeFormat(pattern="yyyy-MM-dd'T'HH:mm") final Date departureDateTime,
                                  @RequestParam(value="arrivalDateTime", required=false) @DateTimeFormat(pattern="yyyy-MM-dd'T'HH:mm") final Date arrivalDateTime) throws ParseException {
-        return new ResponseEntity<>(gson.toJson(service.findInterconnections(departure,
-                arrival,
-                departureDateTime,
-                arrivalDateTime)), HttpStatus.OK);
+        return service.findInterconnections(departure, arrival, departureDateTime, arrivalDateTime);
     }
 }

@@ -2,6 +2,7 @@ package org.ges.rytest.service;
 
 import ch.qos.logback.core.net.SyslogOutputStream;
 import feign.Feign;
+import feign.FeignException;
 import feign.Logger;
 import feign.gson.GsonDecoder;
 import feign.gson.GsonEncoder;
@@ -68,9 +69,15 @@ public class MainService {
 
         log.info("URL: {}", "https://services-api.ryanair.com/timtbl/3/schedules/" + departure + "/" + arrival + "/years/" + year + "/months/" + month);
 
-
-        // FIXME - if "ResourceNotFound" FeignException errorStatus
-        return routesClient.findAllSchedule();
+        try {
+            return routesClient.findAllSchedule();
+        } catch (FeignException e) {
+            if (e.getMessage().contains("status 404")) {
+                log.info("Status 404 - Interconnections not found");
+                return null;
+            }
+            throw e;
+        }
     }
 
     public ResponseEntity<PriorityQueue<Interconnection>> findInterconnections(String departure, String arrival, Date departureDateTime, Date arrivalDateTime) throws ParseException {
@@ -111,7 +118,7 @@ public class MainService {
                 if (departingRoute.getAirportTo().equals(arrivingRoute.getAirportFrom()))
                 {
                     // List of available flights for leg 1, we will have to iterate them
-                    PriorityQueue <Interconnection> legsOneList = new PriorityQueue<Interconnection>(stopsSorter);
+                    PriorityQueue <Interconnection> legsOneList = new PriorityQueue<>(stopsSorter);
 
                     // Flight 1
                     // Get schedules for flight1 (direct from airport 1 to airport 2) and save them into listLegOne
@@ -125,11 +132,11 @@ public class MainService {
         }
 
         if (availableConnections.isEmpty()) {
-            return new ResponseEntity<PriorityQueue<Interconnection>>(HttpStatus.NOT_FOUND);
+            log.info("Response: Status 404 - NO Interconnections Viable");
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
 
-
-        return new ResponseEntity<PriorityQueue<Interconnection>>(availableConnections, HttpStatus.OK);
+        return new ResponseEntity<>(availableConnections, HttpStatus.OK);
     }
 
     protected void setDirectFlights (final PriorityQueue<Interconnection> availableConnections, final String departure, final String arrival,
@@ -146,18 +153,14 @@ public class MainService {
 
         // Get the schedule
         Schedule schedule = findAllSchedulesIATA(departure, arrival, departingYear, departingMonth);
-        if (schedule != null)
-        {
-            for (Day day: schedule.getDays())
-            {
-                for (Flight flight : day.getFlights())
-                {
+        if (schedule != null) {
+            for (Day day: schedule.getDays()) {
+                for (Flight flight : day.getFlights()) {
                     // For each flight of each day, check if schedule is correct (true as is a direct flight and null first leg)
                     List<Calendar> departingArrivalFlightDates= new ArrayList<>();
                     if (isScheduleAvailable(departingYear, departingMonth, departureDate, arrivalDate,
                             day, flight, departingArrivalFlightDates,
-                            true, null))
-                    {
+                            true, null)) {
                         // If so, set the leg, add it to legs, and store connection
                         final List<Leg> legs = new ArrayList<Leg>();
                         final Leg leg = new Leg();
