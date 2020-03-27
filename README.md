@@ -7,7 +7,7 @@ Deploy the JAR file
 ## Usage :zap:
 Use something like postman to perform GET call`s or use the [swagger-ui](http://localhost:8080/swagger-ui.html)
 
-[Postman files](https://github.com/Giancarmine/RY_Task2/tree/master/src/main/resources/postman )
+[Postman files](https://github.com/Giancarmine/RY_Task2/tree/master/src/main/resources/postman)
 
 ## Improvements :computer:
 Next step for the app will be the Heroku deployment (Created but not working...)
@@ -17,4 +17,4 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 
 Please make sure to update tests as appropriate.
 
-###### License [MIT](https://choosealicense.com/licenses/mit/)
+###### License [GPL-3.0](https://choosealicense.com/licenses/gpl-3.0/)
