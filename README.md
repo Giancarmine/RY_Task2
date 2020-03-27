@@ -2,7 +2,7 @@
 RY_Task2 is a REST API project whit spring boot 2, Java 11 and Lombok plug-in.
 
 ## Installing :wrench:
-Deploy the JAR file
+Deploy the [JAR file](https://github.com/Giancarmine/RY_Task2/releases)
 
 ## Usage :zap:
 Use something like postman to perform GET call`s or use the [swagger-ui](http://localhost:8080/swagger-ui.html)

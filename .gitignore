@@ -29,3 +29,5 @@ hs_err_pid*
 target
 
 rytest.iml
+
+src/main/java/META-INF/MANIFEST.MF
