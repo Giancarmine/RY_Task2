@@ -1,0 +1,103 @@
+{
+	"info": {
+		"_postman_id": "27748cb9-8dbb-41a4-9885-679a44042784",
+		"name": "Ryanair_Test2",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Status",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/api/",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getAllRoutes",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/getAllRoutes",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"getAllRoutes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getAllSchedules",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/getAllSchedules/DUB/WRO/years/2020/months/3",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"getAllSchedules",
+						"DUB",
+						"WRO",
+						"years",
+						"2020",
+						"months",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Interconnections",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/interconnections?departure=MAD&arrival=FCO&departureDateTime=2020-04-03T07:00&arrivalDateTime=2020-04-03T21:00",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"interconnections"
+					],
+					"query": [
+						{
+							"key": "departure",
+							"value": "MAD"
+						},
+						{
+							"key": "arrival",
+							"value": "FCO"
+						},
+						{
+							"key": "departureDateTime",
+							"value": "2020-04-03T07:00"
+						},
+						{
+							"key": "arrivalDateTime",
+							"value": "2020-04-03T21:00"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
