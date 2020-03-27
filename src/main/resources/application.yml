@@ -1,5 +1,2 @@
 resource:
-  tasks: http://localhost:8080/api/
-java:
-  runtime:
-    version: 11
+  tasks: https://rytest2.herokuapp.com/api/
