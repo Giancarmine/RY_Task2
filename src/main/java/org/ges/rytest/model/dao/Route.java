@@ -1,6 +1,5 @@
 package org.ges.rytest.model.dao;
 
-
 import lombok.Data;
 
 @Data
